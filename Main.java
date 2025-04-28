@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         boolean currentProgramStatus;
-        final Scanner scan = new Scanner(System.in);
-
         System.out.println("in early dev rn. things may be unpolished or buggy.\n(to exit the current sentence, type \"EXIT\".)\n");
 
         do{
