@@ -5,28 +5,28 @@ public class Main{
         boolean currentProgramStatus;
         final Scanner scan = new Scanner(System.in);
 
-        System.out.println("in early dev rn. things may be unpolished or buggy.\n(to exit the current sentence, type \"EXIT\".)\nnote to self. optimize this shitty code later. this is a baseplate\n");
+        System.out.println("in early dev rn. things may be unpolished or buggy.\n(to exit the current sentence, type \"EXIT\".)\n");
 
         do{
             boolean currentSentenceGo = true;
-            System.out.println("Enter your sentence");
-            String sentence = scan.nextLine();
-
+            String sentence = InputHelper.getString("Enter your sentence");
 
             do {
                 System.out.println("\n[CURRENT SENTENCE]: " + sentence);
-                String toReplace = getInput("\nEnter the character you want to replace");
 
-                String replaceWith = getInput("\nEnter the character you will replace it with.");
+                final String toReplace = getInput("\nEnter the character you want to replace.");
 
-                if(toReplace.equals("EXIT") || replaceWith.equals("EXIT")) {currentSentenceGo = false;}
+                String replaceWith = "";
+                if(!toReplace.equals("EXIT")){replaceWith = getInput("\nEnter the character you will replace it with.");}
+
+                if(toReplace.equals("EXIT")||replaceWith.equals("EXIT")) {currentSentenceGo = false;}
 
                 sentence = replaceChars(sentence, toReplace, replaceWith);
 
-            } while (currentSentenceGo);
+            }while(currentSentenceGo);
 
-            currentProgramStatus = InputHelper.getYN("Do you want to do another sentence?");
-        }while (currentProgramStatus);
+            currentProgramStatus = InputHelper.getYN("\nDo you want to do another sentence?");
+        }while(currentProgramStatus);
 
     }
 
@@ -51,9 +51,8 @@ public class Main{
         for(int i = 0; i<sentenceDeconstructed.length;i++){ //use normal for loop instead of enchanced forloop here bc u need the index anyway
             String currentChar = String.valueOf(sentenceDeconstructed[i]);
 
-            if(currentChar.equalsIgnoreCase(toReplace)){
-                sentenceDeconstructed[i] = replaceWith.charAt(0);
-            }
+            if(currentChar.equalsIgnoreCase(toReplace)){sentenceDeconstructed[i] = replaceWith.charAt(0);}
+
         }
         StringBuilder sentenceReconstructed = new StringBuilder();
         for(char i:sentenceDeconstructed){sentenceReconstructed.append(i);}
